@@ -1,8 +1,8 @@
 require './lib/checkout.rb'
 
 describe Checkout do
-
   subject { described_class.new() }
+  basket_double = [1, 2, 3]
 
   it 'has inventory on initialize' do
     expected_output = {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
@@ -18,5 +18,9 @@ describe Checkout do
     subject.scan(1)
     subject.scan(2)
     expect(subject.basket).to eq expected_output
+  end
+
+  it 'checks out for total value' do
+    expect(subject.total(basket_double)).to eq(74.2)
   end
 end
