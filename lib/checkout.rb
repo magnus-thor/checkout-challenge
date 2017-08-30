@@ -5,7 +5,10 @@ class Checkout
   def initialize
     @inventory = set_inventory
     @basket = []
+    @promo = {1=>[2, 8.50], 4=> [60, 0.9]}
   end
+
+
 
   def set_inventory
     {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
@@ -15,20 +18,21 @@ class Checkout
     basket << item
   end
 
-  def total(total)
-    how_many_each = total.each_with_object(Hash.new(0)) { |number, count| count[number] +=1 }
-    total_price = item1(how_many_each[1]) + item2(how_many_each[2]) +item3(how_many_each[3])
+  def total
+    total_price = 0
+    how_many_each = @basket.each_with_object(Hash.new(0)) { |number, count| count[number] +=1 }
+    how_many_each.each do |key, value|
+      total_price += calc_price(key, value)
+    end
+    total_price
+    # total_price = item1(how_many_each[1]) + item2(how_many_each[2]) +item3(how_many_each[3])
   end
 
-  def item1(item)
-    item * @inventory[1][1]
-  end
-
-  def item2(item)
-    item * @inventory[2][1]
-  end
-
-  def item3(item)
-    item * @inventory[3][1]
+  def calc_price(key, value)
+    # if @promo.has_key?(key)
+    #   value * @promo[key][1]
+    # else
+      value * @inventory[key][1]
+    # end
   end
 end
