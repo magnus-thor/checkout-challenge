@@ -33,4 +33,10 @@ describe Checkout do
     subject.basket = [1, 2, 2]
     expect(subject.total).to eq(89.33)
   end
+
+  it 'change promo sweater discount' do
+    subject.basket = [1, 2, 2]
+    subject.set_promo({2=> [2, 40], 4=> [60, 0.9]})
+    expect(subject.total).to eq(80.33)
+  end
 end

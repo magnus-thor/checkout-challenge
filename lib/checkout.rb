@@ -5,10 +5,12 @@ class Checkout
   def initialize
     @inventory = set_inventory
     @basket = []
-    @promo = {1=>[2, 8.50], 4=> [60, 0.9]}
+    set_promo({1=> [2, 8.50], 4=> [60, 0.9]})
   end
 
-
+  def set_promo(args = {})
+    @promo = args
+  end
 
   def set_inventory
     {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
