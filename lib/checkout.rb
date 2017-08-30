@@ -5,7 +5,7 @@ class Checkout
   def initialize
     @inventory = set_inventory
     @basket = []
-    set_promo({1=> [2, 8.50], 4=> [60, 0.9]})
+    set_promo({1=> [2, 8.50], 'discount'=> [60, 0.9]})
   end
 
   def total
@@ -14,8 +14,8 @@ class Checkout
     how_many_each.each do |key, value|
       total_price += calc_price(key, value)
     end
-    if total_price >= @promo[4][0]
-      total_price = (total_price * @promo[4][1]).round(2)
+    if total_price >= @promo['discount'][0]
+      total_price = (total_price * @promo['discount'][1]).round(2)
     else
       total_price.round(2)
     end
@@ -34,7 +34,7 @@ class Checkout
   end
 
   private
-  
+
   def calc_price(key, value)
     if @promo.has_key?(key) && value >= @promo[key][0]
       value * @promo[key][1]
