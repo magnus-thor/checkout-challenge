@@ -23,4 +23,9 @@ describe Checkout do
     subject.basket = [1, 2, 3]
     expect(subject.total).to eq(74.2)
   end
+
+  it 'subtracts lower prices for 2 ties' do
+    subject.basket = [1, 2, 1, 3]
+    expect(subject.total).to eq(81.95)
+  end
 end

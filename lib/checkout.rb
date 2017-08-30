@@ -25,14 +25,13 @@ class Checkout
       total_price += calc_price(key, value)
     end
     total_price
-    # total_price = item1(how_many_each[1]) + item2(how_many_each[2]) +item3(how_many_each[3])
   end
 
   def calc_price(key, value)
-    # if @promo.has_key?(key)
-    #   value * @promo[key][1]
-    # else
+    if @promo.has_key?(key) && value >= @promo[key][0]
+      value * @promo[key][1]
+    else
       value * @inventory[key][1]
-    # end
+    end
   end
 end
