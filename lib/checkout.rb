@@ -1,23 +1,11 @@
 class Checkout
 
-  attr_accessor :inventory, :basket
+  attr_accessor :inventory, :basket, :promo
 
   def initialize
     @inventory = set_inventory
     @basket = []
     set_promo({1=> [2, 8.50], 4=> [60, 0.9]})
-  end
-
-  def set_promo(args = {})
-    @promo = args
-  end
-
-  def set_inventory
-    {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
-  end
-
-  def scan(item)
-    basket << item
   end
 
   def total
@@ -33,6 +21,20 @@ class Checkout
     end
   end
 
+  def scan(item)
+    basket << item
+  end
+
+  def set_promo(args = {})
+    @promo = args
+  end
+
+  def set_inventory
+    {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
+  end
+
+  private
+  
   def calc_price(key, value)
     if @promo.has_key?(key) && value >= @promo[key][0]
       value * @promo[key][1]
