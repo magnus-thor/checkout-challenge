@@ -24,7 +24,11 @@ class Checkout
     how_many_each.each do |key, value|
       total_price += calc_price(key, value)
     end
-    total_price
+    if total_price >= @promo[4][0]
+      total_price = (total_price * @promo[4][1]).round(2)
+    else
+      total_price.round(2)
+    end
   end
 
   def calc_price(key, value)
