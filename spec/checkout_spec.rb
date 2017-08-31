@@ -47,15 +47,20 @@ describe Checkout do
   end
 
   it 'checks if promo key is being put in properly' do
-    expect(subject.set_promo({'i'=>[10, 10]})).to eq ({"i"=>[10, 10]})
+    expect(subject.set_promo({'i'=>[10, 10]})).to eq({"i"=>[10, 10]})
   end
 
   it 'checks if promo value are being entered properly' do
-    expect(subject.set_promo({1=>['1', 10]}))
+    expect(subject.set_promo({1=>['1', 10]})).to eq({1=>["1", 10]}
+)
   end
 
   it 'can delete from promo' do
     expected_output = ([2, 8.5])
     expect(subject.delete_promo(1)).to eq expected_output
+  end
+
+  it 'checks if inventory is properly set up' do
+    expect(subject.set_inventory({'1'=>['dress', 19.65]})).to eq({"1"=>["dress", 19.65]})
   end
 end

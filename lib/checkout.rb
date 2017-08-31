@@ -18,6 +18,34 @@ class Checkout
     end
   end
 
+  def set_inventory(item)
+    item.each do |key, value|
+      if key.is_a? Integer
+        if value[0].is_a? String and value[1].is_a? Float
+          add_to_inventory(item)
+        else
+          error_message('you have entered wrong values')
+        end
+      else
+        error_message('you have entered the wrong key')
+      end
+    end
+  end
+
+  def set_promo(args = {})
+    args.each do |key, value|
+      if key.is_a? Integer or key == 'discount'
+        if value[0].is_a? Integer and value[1].is_a? Integer
+          add_to_promo(args)
+        else
+          "you have put in wrong values"
+        end
+      else
+        error_message("you have put in wrong key")
+      end
+    end
+  end
+
   def delete_promo(item)
     promo.delete(item)
   end
@@ -35,21 +63,6 @@ class Checkout
     end
   end
 
-  def set_promo(args = {})
-      args.each do |key, value|
-        if key.is_a? Integer or key == 'discount'
-          if value[0].is_a? Integer and value[1].is_a? Integer
-            add_to_promo(args)
-          else
-            error = true
-            error_message("you have put in wrong values")
-          end
-        else
-          error = true
-          error_message("you have put in wrong key")
-        end
-      end
-  end
 
   private
 
