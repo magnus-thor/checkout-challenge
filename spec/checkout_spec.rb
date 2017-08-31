@@ -45,4 +45,12 @@ describe Checkout do
     expect(subject.scan(2.1)).to eq expected_output
     expect(subject.scan('sd')).to eq expected_output
   end
+
+  it 'checks if promo key is being put in properly' do
+    expect(subject.set_promo({'i'=>[10, 10]})).to eq ({"i"=>[10, 10]})
+  end
+
+  it 'checks if promo value are being entered properly' do
+    expect(subject.set_promo({1=>['1', 10]}))
+  end
 end

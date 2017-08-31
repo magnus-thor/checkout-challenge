@@ -3,9 +3,11 @@ class Checkout
   attr_accessor :inventory, :basket, :promo
 
   def initialize
-    @inventory = set_inventory
+    @inventory ={}
     @basket = []
-    set_promo({1=> [2, 8.50], 'discount'=> [60, 0.9]})
+    @promo = {}
+    add_to_inventory({1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]})
+    add_to_promo({1=> [2, 8.50], 'discount'=> [60, 0.9]})
   end
 
   def scan(item)
@@ -30,11 +32,22 @@ class Checkout
   end
 
   def set_promo(args = {})
-    @promo = args
-  end
-
-  def set_inventory
-    {1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]}
+    # error = false
+    #  while error == true
+      args.each do |key, value|
+        if key.is_a? Integer or key == 'discount'
+          if value[0].is_a? Integer and value[1].is_a? Integer
+            add_to_promo(args)
+          else
+            error = true
+            error_message("you have put in wrong values")
+          end
+        else
+          error = true
+          error_message("you have put in wrong key")
+        end
+      end
+    # end
   end
 
   private
@@ -49,5 +62,17 @@ class Checkout
     else
       value * @inventory[key][1]
     end
+  end
+
+  def add_to_inventory(args = {})
+    @inventory.merge!(args)
+  end
+
+  def add_to_promo(args = {})
+    @promo.merge!(args)
+  end
+
+  def error_message(message)
+    message
   end
 end
