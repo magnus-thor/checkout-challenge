@@ -60,8 +60,12 @@ describe Checkout do
     expect(subject.delete_promo(1)).to eq expected_output
   end
 
-  it 'checks if inventory is properly set up' do
+  it 'checks if inventory key is properly set up' do
     expect(subject.set_inventory({'1'=>['dress', 19.65]})).to eq({"1"=>["dress", 19.65]})
+  end
+
+  it 'checks if inventory value is properly set up' do
+    expect(subject.set_inventory({1=>['dress', 19]})).to eq({1=>["dress", 19]})
   end
 
   it 'can delete from inventory' do
