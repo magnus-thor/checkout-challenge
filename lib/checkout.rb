@@ -3,7 +3,7 @@ class Checkout
   attr_accessor :inventory, :basket, :promo
 
   def initialize
-    @inventory ={}
+    @inventory = {}
     @basket = []
     @promo = {}
     add_to_inventory({1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]})
@@ -18,11 +18,12 @@ class Checkout
     end
   end
 
-  def set_inventory(item)
+  def set_inventory(item = {})
     item.each do |key, value|
       if key.is_a? Integer
         if value[0].is_a? String and value[1].is_a? Float
           add_to_inventory(item)
+          puts "should add"
         else
           error_message('you have entered wrong values')
         end

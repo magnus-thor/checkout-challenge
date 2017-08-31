@@ -72,4 +72,9 @@ describe Checkout do
     expected_output = ["tie", 9.25]
     expect(subject.delete_inventory(1)).to eq expected_output
   end
+
+  it 'can add to inventory' do
+    expected_output = {4=> ['dress', 67.0]}
+    expect(subject.set_inventory({4=> ['dress', 67.0]})).to eq expected_output
+  end
 end
