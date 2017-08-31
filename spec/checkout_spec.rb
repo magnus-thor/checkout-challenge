@@ -39,4 +39,8 @@ describe Checkout do
     subject.set_promo({2=> [2, 40], 'discount'=> [60, 0.9]})
     expect(subject.total).to eq(80.33)
   end
+
+  it 'checks if items are being scanned in correctly' do
+    expect(subject.scan(2.1)).to eq 'You did not enter the item properly'
+  end
 end

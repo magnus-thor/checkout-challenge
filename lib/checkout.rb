@@ -8,6 +8,16 @@ class Checkout
     set_promo({1=> [2, 8.50], 'discount'=> [60, 0.9]})
   end
 
+  def scan(item)
+    if item.is_a? Integer
+      scan_item(item)
+    else
+      'You did not enter the item properly'
+    end
+  end
+
+
+
   def total
     total_price = 0
     how_many_each = @basket.each_with_object(Hash.new(0)) { |number, count| count[number] +=1 }
@@ -21,7 +31,7 @@ class Checkout
     end
   end
 
-  def scan(item)
+  def scan_item(item)
     basket << item
   end
 
