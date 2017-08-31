@@ -63,4 +63,9 @@ describe Checkout do
   it 'checks if inventory is properly set up' do
     expect(subject.set_inventory({'1'=>['dress', 19.65]})).to eq({"1"=>["dress", 19.65]})
   end
+
+  it 'can delete from inventory' do
+    expected_output = ["tie", 9.25]
+    expect(subject.delete_inventory(1)).to eq expected_output
+  end
 end

@@ -47,7 +47,11 @@ class Checkout
   end
 
   def delete_promo(item)
-    promo.delete(item)
+    @promo.delete(item)
+  end
+
+  def delete_inventory(item)
+    @inventory.delete(item)
   end
 
   def total
