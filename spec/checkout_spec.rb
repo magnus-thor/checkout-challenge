@@ -41,6 +41,9 @@ describe Checkout do
   end
 
   it 'checks if items are being scanned in correctly' do
-    expect(subject.scan(2.1)).to eq 'You did not enter the item properly'
+    expected_output = 'You did not enter the item properly'
+    expect(subject.scan(2.1)).to eq expected_output
+    expect(subject.scan('sd')).to eq expected_output
+
   end
 end

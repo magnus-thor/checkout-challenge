@@ -9,10 +9,10 @@ class Checkout
   end
 
   def scan(item)
-    if item.is_a? Integer
-      scan_item(item)
-    else
+    if item.is_a? Float or item.is_a? String
       'You did not enter the item properly'
+    else
+      scan_item(item)
     end
   end
 
