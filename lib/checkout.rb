@@ -1,6 +1,6 @@
 class Checkout
 
-  attr_accessor :inventory, :basket, :promo
+  attr_accessor :inventory, :basket, :promo, :message
 
   def initialize
     @inventory = {}
@@ -12,9 +12,10 @@ class Checkout
 
   def scan(item)
     if item.is_a? Float or item.is_a? String
-      error_message('You did not enter the item properly')
+      return_message('You did not enter the item properly')
     else
       scan_item(item)
+      return_message('item added to basket')
     end
   end
 
@@ -23,13 +24,15 @@ class Checkout
       if key.is_a? Integer
         if value[0].is_a? String and value[1].is_a? Float
           add_to_inventory(item)
+          @message = ("Item added to inventory")
         else
-          error_message('you have entered wrong values')
+          @message = ('you have entered wrong values')
         end
       else
-        error_message('you have entered the wrong key')
+        @message = ('you have entered the wrong key')
       end
     end
+    return_message(@message)
   end
 
   def set_promo(args = {})
@@ -37,13 +40,15 @@ class Checkout
       if key.is_a? Integer or key == 'discount'
         if value[0].is_a? Integer and value[1].is_a? Integer
           add_to_promo(args)
+          @message = ("promo added")
         else
-          "you have put in wrong values"
+          @message = ("you have put in wrong values")
         end
       else
-        error_message("you have put in wrong key")
+        @message = ("you have put in wrong key")
       end
     end
+    return_message(@message)
   end
 
   def delete_promo(item)
@@ -90,7 +95,7 @@ class Checkout
     @promo.merge!(args)
   end
 
-  def error_message(message)
+  def return_message(message)
     message
   end
 end

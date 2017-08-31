@@ -47,12 +47,11 @@ describe Checkout do
   end
 
   it 'checks if promo key is being put in properly' do
-    expect(subject.set_promo({'i'=>[10, 10]})).to eq({"i"=>[10, 10]})
+    expect(subject.set_promo({'i'=>[10, 10]})).to eq("you have put in wrong key")
   end
 
   it 'checks if promo value are being entered properly' do
-    expect(subject.set_promo({1=>['1', 10]})).to eq({1=>["1", 10]}
-)
+    expect(subject.set_promo({1=>['1', 10]})).to eq("you have put in wrong values")
   end
 
   it 'can delete from promo' do
@@ -61,11 +60,11 @@ describe Checkout do
   end
 
   it 'checks if inventory key is properly set up' do
-    expect(subject.set_inventory({'1'=>['dress', 19.65]})).to eq({"1"=>["dress", 19.65]})
+    expect(subject.set_inventory({'1'=>['dress', 19.65]})).to eq("you have entered the wrong key")
   end
 
   it 'checks if inventory value is properly set up' do
-    expect(subject.set_inventory({1=>['dress', 19]})).to eq({1=>["dress", 19]})
+    expect(subject.set_inventory({1=>['dress', 19]})).to eq("you have entered wrong values")
   end
 
   it 'can delete from inventory' do
@@ -74,7 +73,7 @@ describe Checkout do
   end
 
   it 'can add to inventory' do
-    expected_output = {4=> ['dress', 67.0]}
+    expected_output = "Item added to inventory"
     expect(subject.set_inventory({4=> ['dress', 67.0]})).to eq expected_output
   end
 end
