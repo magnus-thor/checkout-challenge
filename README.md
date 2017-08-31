@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/magnus-thor/checkout-challenge/badge.svg?branch=master)](https://coveralls.io/github/magnus-thor/checkout-challenge?branch=master)
+
 # Checkout challenge
 --------
 Checkout Challenge is about an on-line marketplace where you can control the inventory and discount.
