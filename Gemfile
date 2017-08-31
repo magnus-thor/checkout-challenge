@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-require 'rspec'
+gem 'rspec'
 gem 'coveralls', require: false
