@@ -16,8 +16,6 @@ class Checkout
     end
   end
 
-
-
   def total
     total_price = 0
     how_many_each = @basket.each_with_object(Hash.new(0)) { |number, count| count[number] +=1 }
@@ -31,10 +29,6 @@ class Checkout
     end
   end
 
-  def scan_item(item)
-    basket << item
-  end
-
   def set_promo(args = {})
     @promo = args
   end
@@ -44,6 +38,10 @@ class Checkout
   end
 
   private
+
+  def scan_item(item)
+    basket << item
+  end
 
   def calc_price(key, value)
     if @promo.has_key?(key) && value >= @promo[key][0]
