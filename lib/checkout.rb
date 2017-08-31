@@ -23,7 +23,6 @@ class Checkout
       if key.is_a? Integer
         if value[0].is_a? String and value[1].is_a? Float
           add_to_inventory(item)
-          puts "should add"
         else
           error_message('you have entered wrong values')
         end
