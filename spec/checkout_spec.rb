@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require './lib/checkout.rb'
 
 describe Checkout do
