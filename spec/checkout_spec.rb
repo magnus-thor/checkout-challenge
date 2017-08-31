@@ -53,4 +53,9 @@ describe Checkout do
   it 'checks if promo value are being entered properly' do
     expect(subject.set_promo({1=>['1', 10]}))
   end
+
+  it 'can delete from promo' do
+    expected_output = ([2, 8.5])
+    expect(subject.delete_promo(1)).to eq expected_output
+  end
 end

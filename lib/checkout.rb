@@ -12,10 +12,14 @@ class Checkout
 
   def scan(item)
     if item.is_a? Float or item.is_a? String
-      'You did not enter the item properly'
+      error_message('You did not enter the item properly')
     else
       scan_item(item)
     end
+  end
+
+  def delete_promo(item)
+    promo.delete(item)
   end
 
   def total
@@ -32,8 +36,6 @@ class Checkout
   end
 
   def set_promo(args = {})
-    # error = false
-    #  while error == true
       args.each do |key, value|
         if key.is_a? Integer or key == 'discount'
           if value[0].is_a? Integer and value[1].is_a? Integer
@@ -47,7 +49,6 @@ class Checkout
           error_message("you have put in wrong key")
         end
       end
-    # end
   end
 
   private
