@@ -6,7 +6,7 @@ class Checkout
     @inventory = {}
     @basket = []
     @promo = {}
-    add_to_inventory({1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]})
+    add_to_inventory({ 1=> ['tie', 9.25], 2=> ['Sweater', 45.0], 3=> ['skirt', 19.95]})
     add_to_promo({1=> [2, 8.50], 'discount'=> [60, 0.9]})
   end
 
@@ -62,16 +62,13 @@ class Checkout
   def total
     total_price = 0
     how_many_each = @basket.each_with_object(Hash.new(0)) { |number, count| count[number] +=1 }
-    how_many_each.each do |key, value|
-      total_price += calc_price(key, value)
-    end
+    how_many_each.each { |key, value| total_price += calc_price(key, value) }
     if total_price >= @promo['discount'][0]
       total_price = (total_price * @promo['discount'][1]).round(2)
     else
       total_price.round(2)
     end
   end
-
 
   private
 
@@ -80,11 +77,7 @@ class Checkout
   end
 
   def calc_price(key, value)
-    if @promo.has_key?(key) && value >= @promo[key][0]
-      value * @promo[key][1]
-    else
-      value * @inventory[key][1]
-    end
+    @promo.has_key?(key) && value >= @promo[key][0] ? value * @promo[key][1] : value * @inventory[key][1]
   end
 
   def add_to_inventory(args = {})
